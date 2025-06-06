@@ -2,18 +2,18 @@
 
 ## Motivation
 
-When troubleshooting technical systems—whether industrial filtration skids, manufacturing lines, or complex machinery—engineers often rely on historical work orders, incident reports, and troubleshooting logs. A pure embedding-based search (e.g. computing cosine similarity on “problem + solution” text) can miss records that share a critical rare flag (for example, a specific alarm code or component ID) but describe it in different words. Conversely, exact keyword matching on alarm codes alone loses the nuance of natural-language variation.
+When troubleshooting technical systems—whether industrial, manufacturing lines, or complex machinery—engineers often rely on historical work orders, incident reports, and troubleshooting logs. A pure embedding-based search (e.g. computing cosine similarity on “problem + solution” text) can miss records that share a critical rare flag (for example, a specific alarm code or component ID) but describe it in different words. Conversely, exact keyword matching on alarm codes alone loses the nuance of natural-language variation.
 
 **InfoLLMGraph** is designed to bridge this gap by combining:
 
-1. **Information-theoretic overlap** on discrete matches (e.g. identical alarm codes, valve IDs, or other rare tokens), and  
+1. **Information-theoretic overlap** on discrete matches (e.g. identical alarm codes, component IDs, or other rare tokens), and  
 2. **LLM-based semantic embeddings** of the full “problem + solution” text.  
 
 The result is a single, weighted graph of all work‐order records. Each node represents one row; edges carry a score between 0 and 1 that reflects a mix of:
 - **Exact match on rare feature** (information overlap), and  
 - **Soft semantic similarity** (embedding cosine).  
 
-By retrieving “closest node + its neighbors” from this graph, you surface both semantically relevant records and any that share a rare, business‐critical flag—even if the wording differs. This increases the chance of finding truly relevant technical records that embeddings alone might miss.
+**By retrieving “closest node + its neighbors” from this graph, you surface both semantically relevant records and any that share a rare, business‐critical flag—even if the wording differs. This increases the chance of finding truly relevant technical records that embeddings alone might miss.**
 
 ---
 
